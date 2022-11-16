@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import {Card, CardBody, CardTitle, CardSubtitle, Button, Collapse} from "reactstrap"
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import {Card, CardBody, CardTitle, CardSubtitle, Button, Collapse} from 'reactstrap';
 
 /**
  * 

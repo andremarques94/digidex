@@ -1,5 +1,5 @@
-import React from "react";
-import {Row} from "reactstrap";
+import React from 'react';
+import {Row} from 'reactstrap';
 import DigiCard from './DigiCard';
 
 

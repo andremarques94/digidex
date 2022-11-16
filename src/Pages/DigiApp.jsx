@@ -1,15 +1,15 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import DigiList from './DigiList';
 import Search from './Search';
-import {Button} from "reactstrap"
+import {Button} from 'reactstrap' 
 
 const fetchDigi = async (page) => {
     const resp = await fetch(`https://www.digi-api.com/api/v1/digimon?page=${page}`);
     const data = await resp.json();
 
     return data;
-}   
+}
 
 const DigiApp = () => {
     const [digimons, setDigimons] = useState([]);
