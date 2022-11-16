@@ -1,4 +1,4 @@
-import DigiApp from './DigiApp.jsx';
+import DigiApp from '../Pages/DigiApp.jsx';
 
 function App() {
   return (
