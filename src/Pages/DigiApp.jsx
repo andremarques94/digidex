@@ -11,18 +11,21 @@ const fetchDigi = async page => {
     return data;
 };
 
+
+
 const DigiApp = () => {
     const [digimons, setDigimons] = useState([]);
     const [filteredList, setFilteredList] = useState([]);
     const [page, setPage] = useState(0);
 
-    const onClick = () => {
-        fetchDigi(page).then(data => {
-            setDigimons(prev => [...prev, ...data.content]);
-            setFilteredList(prev => [...prev, ...data.content]);
-        });
+    const onClick = async () => {
+        const data = await fetchDigi(page);
+
+        setDigimons(prev => [...prev, ...data.content]);
+        setFilteredList(prev => [...prev, ...data.content]);
         setPage(prev => prev + 1);
         console.log(digimons);
+        
     };
 
     const handleOnChange = event => {
@@ -50,9 +53,9 @@ const DigiApp = () => {
             <hr />
             <DigiList filteredList={filteredList} />
             <hr />
-            <div class="container">
-                <div class="row">
-                    <div class="col text-center">
+            <div className="container">
+                <div className="row">
+                    <div className="col text-center">
                         <Button onClick={onClick} color="primary" size="lg">
                             {' '}
                             MORE{' '}

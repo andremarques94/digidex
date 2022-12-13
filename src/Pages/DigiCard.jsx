@@ -17,21 +17,25 @@ const DigiCard = ({ digimon }) => {
     const [desc, setDesc] = useState(undefined);
     const [isOpen, setIsOpen] = useState(false);
     const [img, setImg] = useState();
+    const [skills, setSkills] = useState();
 
     const toggle = () => setIsOpen(!isOpen);
 
     console.log(digimon);
 
     useEffect(() => {
-        fetchDigi(digimon.id).then(resp => {
+        (async () => {
+            const resp = await fetchDigi(digimon.id)
+            
             setImg(resp.images[0].href);
-
-            setDesc(
-                resp.descriptions['1'].language === 'en_us'
-                    ? resp.descriptions['1'].description
-                    : resp.descriptions['0'].description
-            );
-        });
+                setSkills(resp.skills);
+                
+                resp.descriptions[1] && setDesc(
+                    resp.descriptions['1'].language === 'en_us'
+                        ? resp.descriptions['1'].description
+                        : resp.descriptions['0'].description
+                );
+        })();
     }, [digimon.id]);
 
     return (
@@ -49,6 +53,12 @@ const DigiCard = ({ digimon }) => {
                     </Button>
                     <Collapse isOpen={isOpen}>
                         <CardBody>{desc}</CardBody>
+                        <Card>
+                            <CardBody>
+                                <CardTitle tag="h1">SKILLS</CardTitle>
+                                {skills.map(skill => `${skill.skill} -> ${skill.description}`)}
+                            </CardBody>
+                        </Card>
                     </Collapse>
                 </CardBody>
             </Card>
